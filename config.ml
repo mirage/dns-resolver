@@ -3,11 +3,12 @@
 open Mirage
 
 let dns_handler =
-  let pin = "git+https://github.com/mirage/ocaml-dns.git#d99eff3429f60a5a9eef262f45b4e7d12ab251e5" in
+  let pin = "git+https://github.com/mirage/ocaml-dns.git#v6.2.2" in
   let packages =
     [
       package "logs" ;
       package "dns" ~pin;
+      package "dnssec" ~pin;
       package "dns-server" ~pin;
       package "dns-mirage" ~pin;
       package ~sublibs:[ "mirage" ] "dns-resolver" ~pin;
