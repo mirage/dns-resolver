@@ -6,9 +6,9 @@ let dns_handler =
   let packages =
     [
       package "logs" ;
-      package "dns" ~max:"6.2.0";
-      package "dns-server" ~max:"6.2.0";
-      package "dns-mirage" ~max:"6.2.0";
+      package "dns" ~max:"6.1.0";
+      package "dns-server" ~max:"6.1.0";
+      package "dns-mirage" ~max:"6.1.0";
       package ~sublibs:[ "mirage" ] "dns-resolver";
     ]
   in
