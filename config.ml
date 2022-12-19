@@ -2,6 +2,10 @@
 
 open Mirage
 
+let with_dnssec =
+  let doc = Key.Arg.info ~doc:"Use DNSSEC when it's possible to resolve domain-names." [ "with-dnssec" ] in
+  Key.(create "with_dnssec" Arg.(opt bool false doc))
+
 let dns_handler =
   let packages =
     [
@@ -15,6 +19,7 @@ let dns_handler =
   in
   foreign
     ~packages
+    ~keys:[ Key.v with_dnssec ]
     "Unikernel.Main" (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
 
 let () =
