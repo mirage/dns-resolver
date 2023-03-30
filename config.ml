@@ -23,4 +23,4 @@ let dns_handler =
     "Unikernel.Main" (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
 
 let () =
-  register "resolver" [dns_handler $ default_random $ default_posix_clock $ default_monotonic_clock $ default_time $ generic_stackv4v6 default_network ]
+  register ~register:no_reporter "resolver" [dns_handler $ default_random $ default_posix_clock $ default_monotonic_clock $ default_time $ generic_stackv4v6 default_network ]
