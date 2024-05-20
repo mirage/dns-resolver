@@ -1,25 +1,24 @@
+(* mirage >= 4.5.0 & < 4.6.0 *)
 (* (c) 2017, 2018 Hannes Mehnert, all rights reserved *)
 
 open Mirage
 
-let with_dnssec =
-  let doc = Key.Arg.info ~doc:"Use DNSSEC when it's possible to resolve domain-names." [ "with-dnssec" ] in
-  Key.(create "with_dnssec" Arg.(opt bool false doc))
+let with_dnssec = runtime_arg ~pos:__POS__ "Unikernel.with_dnssec"
 
 let dns_handler =
   let packages =
     [
       package "logs";
-      package "dns" ~min:"6.4.1" ~max:"6.5.0";
-      package "dns-server" ~min:"6.4.1" ~max:"6.5.0";
-      package "dns-mirage" ~min:"6.4.1" ~max:"6.5.0";
-      package "dnssec" ~min:"6.4.1" ~max:"6.5.0";
-      package ~sublibs:[ "mirage" ] "dns-resolver" ~min:"6.4.1" ~max:"6.5.0";
+      package "dns" ~min:"6.4.1" ~max:"7.4.0";
+      package "dns-server" ~min:"6.4.1" ~max:"7.4.0";
+      package "dns-mirage" ~min:"6.4.1" ~max:"7.4.0";
+      package "dnssec" ~min:"6.4.1" ~max:"7.4.0";
+      package ~sublibs:[ "mirage" ] "dns-resolver" ~min:"6.4.1" ~max:"7.4.0";
     ]
   in
-  foreign
+   main
+    ~runtime_args:[ with_dnssec; ]
     ~packages
-    ~keys:[ Key.v with_dnssec ]
     "Unikernel.Main" (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
 
 let () =
