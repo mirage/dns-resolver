@@ -1,4 +1,4 @@
-(* mirage >= 4.5.0 & < 4.6.0 *)
+(* mirage >= 4.7.0 & < 4.8.0 *)
 (* (c) 2017, 2018 Hannes Mehnert, all rights reserved *)
 
 open Mirage
@@ -9,11 +9,11 @@ let dns_handler =
   let packages =
     [
       package "logs";
-      package "dns" ~min:"6.4.1" ~max:"7.4.0";
-      package "dns-server" ~min:"6.4.1" ~max:"7.4.0";
-      package "dns-mirage" ~min:"6.4.1" ~max:"7.4.0";
-      package "dnssec" ~min:"6.4.1" ~max:"7.4.0";
-      package ~sublibs:[ "mirage" ] "dns-resolver" ~min:"6.4.1" ~max:"7.4.0";
+      package "dns" ~min:"9.0.0" ~max:"9.1.0";
+      package "dns-server" ~min:"9.0.0" ~max:"9.1.0";
+      package "dns-mirage" ~min:"9.0.0" ~max:"9.1.0";
+      package "dnssec" ~min:"9.0.0" ~max:"9.1.0";
+      package ~sublibs:[ "mirage" ] "dns-resolver" ~min:"9.0.0" ~max:"9.1.0";
     ]
   in
    main

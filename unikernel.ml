@@ -6,7 +6,7 @@ let with_dnssec =
   let doc = Arg.info ~doc:"Use DNSSEC when it's possible to resolve domain-names." [ "with-dnssec" ] in
   Arg.(value & opt bool false doc)
 
-module Main (R : Mirage_random.S) (P : Mirage_clock.PCLOCK) (M : Mirage_clock.MCLOCK) (T : Mirage_time.S) (S : Tcpip.Stack.V4V6) = struct
+module Main (R : Mirage_crypto_rng_mirage.S) (P : Mirage_clock.PCLOCK) (M : Mirage_clock.MCLOCK) (T : Mirage_time.S) (S : Tcpip.Stack.V4V6) = struct
   module D = Dns_resolver_mirage.Make(R)(P)(M)(T)(S)
 
   let start _r _pclock _mclock _ s with_dnssec =
