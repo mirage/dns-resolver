@@ -1,10 +1,7 @@
-(* mirage >= 4.7.0 & < 4.8.0 *)
+(* mirage >= 4.8.1 & < 4.9.0 *)
 (* (c) 2017, 2018 Hannes Mehnert, all rights reserved *)
 
 open Mirage
-
-let with_dnssec = runtime_arg ~pos:__POS__ "Unikernel.with_dnssec"
-
 let dns_handler =
   let packages =
     [
@@ -17,7 +14,6 @@ let dns_handler =
     ]
   in
    main
-    ~runtime_args:[ with_dnssec; ]
     ~packages
     "Unikernel.Main" (random @-> pclock @-> mclock @-> time @-> stackv4v6 @-> job)
 
